@@ -1,0 +1,220 @@
+html,
+body,
+.cert-wrap{
+	width:100%;
+	height:100%;
+	overflow:hidden;
+}
+.top{
+	width:100%;
+	/*height:12.4rem;*/
+	height:43.63%;
+	padding-top: 0.5rem;
+	background-color:#019FE8;
+	text-align:center;
+	color:#fff;
+	padding-bottom:.7rem;
+}
+.title{
+	width:100%;
+	height:1.875rem;
+	text-align: center;
+	margin-bottom:0.6rem;
+}
+.title-guide{
+	width:4.75rem;
+	height:1.875rem;
+	background:url(../images/title.png) no-repeat;
+	background-size:100% 100%;
+	display:inline-block;
+	vertical-align:middle;
+}
+.title-text{
+	font-size:1rem;
+	height:1.875rem;
+	line-height:1.875rem;
+	padding-left:0.375rem;
+	border-left:solid 1px #fff;
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:0.375rem;
+}
+.person-img{
+	width:auto;
+	height:65%;
+	/*width: 50%;*/
+	/*height: auto;*/
+	/*max-width: 6.6rem;*/
+	/*max-height: 7.85rem;*/
+	box-sizing:border-box;
+}
+.top .name{
+	font-size:24px;
+	line-height:24px;
+	/*letter-spacing:0.6rem;*/
+	/*padding-left: 0.6rem;*/
+	/*margin-top:1%;*/
+	margin-top: 5px;
+	letter-spacing: 2px;
+}
+.star-box{
+	width:100%;
+	/*height:1.5rem;*/
+	height:3.3%;
+	margin-top: 0px;
+	background:#66C5F1;
+	position: relative; top: 0px;
+}
+.middle{
+	width:15rem;
+	height:15.9%;
+	margin:1.8% auto 2.81%;
+	border:solid 1px #B2B2B2;
+	margin-bottom: 10px;
+}
+.middle p{
+	height:33.33%;
+	line-height:1.2rem;
+	font-size:0.8rem;
+	border-bottom:solid 1px #B2B2B2;
+}
+.middle span{
+	display:inline-block;
+	width:50%;
+	height:100%;
+	float:left;
+}
+.middle b{
+	font-weight:bold;
+	padding-left:1.3rem;
+}
+.middle .br{
+	border-right:solid 1px #B2B2B2;
+}
+.middle .bt{
+	border-bottom:none;
+}
+.star{
+	width:6rem;
+	position:relative;
+	margin:0 auto;
+	top:0;
+}
+.star-bg,
+.star-white{
+	position:absolute;
+}
+.star-bg,
+.star-white{
+	width:100%;
+	height:1rem;
+	overflow:hidden;
+}
+.star-bg i,
+.star-white i{
+	width:1.2rem;
+	height:0.95rem;
+	background:url(../images/star-white-bg.png) center no-repeat;
+	background-size:0.95rem 0.92rem;
+	display:inline-block;
+}
+.star-white i{
+	background:url(../images/star-white.png) center no-repeat;
+	background-size:0.95rem 0.92rem;
+}
+.logo{
+	height:1rem;
+	line-height:1rem;
+	letter-spacing:3px;
+	font-size:0.6rem;
+}
+.logo span{
+	width:1.2rem;
+	height:1rem;
+	background:url(../images/cert_logo-new.png) left center no-repeat;
+	background-size:0.95rem 0.92rem;
+	padding-right:10px;
+	display:inline-block;
+	display: none;
+	vertical-align:middle;
+	margin-top:-3px;
+}
+.mt{
+	padding:0.2rem 0 1.3rem;
+}
+.bottom{
+	width:100%;
+	height:7rem;
+	text-align:center;
+	position:relative;
+	margin-bottom:18%;
+}
+.code{
+	/*width:60px;*/
+	/*height:60px;*/
+	width:auto;
+	height:47%;
+
+
+}
+.footer{
+	width:100%;
+	height:7.45%;
+	background:#019FE8;
+	position: absolute;
+	bottom: 0;
+	display:-webkit-box;
+}
+.footer a{
+	display: -webkit-box;
+	-webkit-box-flex: 1;
+	color:#fff;
+	border-right:#fff solid 1px;
+}
+.footer a:last-child{
+	border:none;
+}
+
+
+/*8-3*/
+.title{ background: #3c7d53; padding-top: 0.1rem; margin-bottom: 0;}
+.top{ padding-top: 0; height: auto;}
+.title-guide{background: none; font-size: 22px;}
+.add-boxa{position: relative; height: 13.5rem; background: url("../images/new_bg_w.jpg") left top no-repeat; background-size:16rem 10rem; padding-top: 0.4rem;}
+.star-box{height: 7.3%; background-color:rgba(0,0,0,0.5) }
+
+.top .name{line-height: 25px; font-size: 22px;color:#000; letter-spacing: 1px;}
+.star-bg, .star-white {
+	left: 50%;
+	margin-left: -3rem;
+	position: absolute;}
+.middle{height: auto;}
+.cbox{width: 33.3%; float: left; background: #6dbc7a; height: 100%;}
+html, body, .cert-wrap{overflow: auto;}
+.middle .left-font{margin-left: 24px; display: inline; float: none; font-weight: bold;}
+
+
+
+
+
+.footer{background: none;}
+.footer a.cbox{background: #6dbc7a; position: relative; z-index: 99;}
+.top{background: none;}
+
+
+
+/*蓝色版本导游证*/
+.box-blue .footer a.cbox{background: #2c4b96; width: 50%;}
+.box-blue .title{background: #2c4b96;}
+
+
+/*8-17*/
+/*.bottom{padding-bottom: 1.5rem;}*/
+.code{display: inline-block;}
+
+/*8-31*/
+.box-blue .logo span{background: url("../images/cert_logo-new.png") left center no-repeat;}
+
+.cblue{background-color:#0072c6!important;}
+.en-info,.en-title{color:#000;display:block;font-size:14px;margin-top:5px;}
+
