@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://tgauth.12301.cn/public/guide/comment_list.html?id=1279526 -->
+<html class="pixel-ratio-1" style="font-size: 53.0093px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="renderer" content="webkit">
+    <title>评价信息</title>
+    <link href="./commentlist_files/reset.css" rel="stylesheet" type="text/css">
+    <link href="./commentlist_files/guide-cert.css" rel="stylesheet" type="text/css">
+    <link href="./commentlist_files/assess.css" rel="stylesheet" type="text/css">
+    <link href="./commentlist_files/jquery-weui.css" rel="stylesheet" type="text/css">
+    <link href="./commentlist_files/weui.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="./commentlist_files/templates.js.下载"></script>
+    <script type="text/javascript" src="./commentlist_files/jquery-2.1.4.min.js.下载"></script>
+    <script type="text/javascript" src="./commentlist_files/underscore-min.js.下载"></script>
+    <script type="text/javascript" src="./commentlist_files/jquery-weui.js.下载"></script>
+    <script type="text/javascript" src="./commentlist_files/mustache.min.js.下载"></script>
+    <script type="text/javascript" src="./commentlist_files/jweixin-1.1.0.js.下载"></script>
+    <script type="text/javascript" src="./commentlist_files/jquery.qrcode.min.js.下载"></script>
+    <script type="text/javascript" src="./commentlist_files/common.js.下载"></script>    <script type="text/javascript" src="./commentlist_files/comment.js.下载"></script>
+    <script>
+        //wap页面rem设置
+        (function (win) {
+            var ratio, scaleValue, renderTime,
+                    document = window.document,
+                    docElem = document.documentElement,
+                    vpm = document.querySelector('meta[name="viewport"]');
+    
+            if (vpm) {
+                var tempArray = vpm.getAttribute("content").match(/initial\-scale=(["']?)([\d\.]+)\1?/);
+                if (tempArray) {
+                    scaleValue = parseFloat(tempArray[2]);
+                    ratio = parseInt(1 / scaleValue);
+                }
+            } else {
+                vpm = document.createElement("meta");
+                vpm.setAttribute("name", "viewport");
+                vpm.setAttribute("content", "width=device-width, initial-scale=1, user-scalable=no, minimal-ui");
+                docElem.firstElementChild.appendChild(vpm);
+            }
+    
+            win.addEventListener("resize", function () {
+                clearTimeout(renderTime);
+                renderTime = setTimeout(initPage, 300);
+            }, false);
+    
+            win.addEventListener("pageshow", function (e) {
+                e.persisted && (clearTimeout(renderTime), renderTime = setTimeout(initPage, 300));
+            }, false);
+            function initPage() {
+                var htmlWidth = docElem.getBoundingClientRect().width;
+                htmlWidth / ratio > 540 && (htmlWidth = 540 * ratio);
+                win.rem = htmlWidth / 16;
+                var fontSize = win.rem + "px";
+                docElem.style.fontSize = fontSize;
+                //$("textarea").css({fontSize:fontSize});
+            }
+    
+            $(document).ready(function () {
+    
+                initPage();
+            });
+    
+    
+        })(window);
+    </script><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui"></head>
+
+<body class="has-bg" data-new-gr-c-s-check-loaded="14.990.0" data-gr-ext-installed="">
+<div class="cert-wrap" id="step_score">
+    <div class="mid-contents">
+        <!--添加一段文字-->
+        <!--<p class="new-p">您不在导游所带的团队中，不能对导游进行评价。</p>-->
+        <!--<p class="new-p">您不在导游所带的团队中，不能对导游进行投诉。</p>-->
+        <!--添加文字结束-->
+        <div class="infor-area left-positon">
+            <div class="photo-area">
+                <img src="./commentlist_files/upload_1c0e8560c43449215b284bc5d2465b79.jpg">
+            </div>
+            <table cellpadding="0" cellspacing="0" border="0" class="comment-rig-ta fl">
+                <tbody><tr class="big-fontss">
+                    <td colspan="2">高迁</td>
+                </tr>
+                <!--<tr>-->
+                    <!--<td colspan="2">-->
+                        <!--<div class="jicheng">-->
+                            <!--<div class="star-box no-star-bg">-->
+                                <!--<p class="star">-->
+                                    <!--<span class="star-bg"><i></i><i></i><i></i><i></i><i></i></span>-->
+                                    <!--<span class="star-white"><i></i><i></i><i></i><i></i></span>-->
+                                <!--</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <tr class="mid-fontss">
+                    <td width="50%">带团次数:<span>0</span></td>
+                    <td>服务人次:<span>0</span></td>
+                </tr>
+            </tbody></table>
+        </div>
+        <div class="clear"></div>
+        <div class="good-or-bad">
+            <a href="https://tgauth.12301.cn/public/guide/comment_list.html?id=1279526#" class="goodon" data-p="0">好评(0)</a>|<a href="https://tgauth.12301.cn/public/guide/comment_list.html?id=1279526#" data-p="1">差评(0)</a>
+        </div>
+        <div class="tab-contents">
+            <div class="good-list demos-content-padded">
+                <ul id="list-a">
+
+
+                    <div class="no-result">
+        <img src="./commentlist_files/no-result.jpg">
+        <p>暂无导游评价信息!</p>
+    </div>
+
+
+</ul>
+            </div>
+            <div class="weui-infinite-scroll" id="infinite-scroll" style="display: none;">
+                <div class="infinite-preloader"></div>
+                滑动查看更多导游...
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var guideId = "1279526";
+        CommentUI.init({guide_id:guideId, product:"tour"});
+    });
+</script>
+<script type="text/javascript">
+
+    /* 加载更多*/
+
+    function click_hxk(obj1,obj2,css){
+        $(obj1).eq(0).addClass(css);
+        $(obj2).hide();
+        $(obj2).eq(0).show();
+        $(obj1).click(function(){
+            $(this).parent().find("."+css).removeClass(css);
+            $(this).addClass(css);
+            $(obj2).hide();
+            $(obj2).eq($(obj1).index(this)).show();
+        })
+
+    }
+
+    /*调用*/
+    //click_hxk(".good-or-bad a",".tab-contents","goodon");
+
+
+    $(".more-btns-down").click(function(){
+        $(this).hide();
+        $(this).parents("p").find(".more-btns-up").show();
+        $(this).parents("p").find(".moreFont").show();
+    });
+    $(".more-btns-up").click(function(){
+        $(this).hide();
+        $(this).parents("p").find(".more-btns-down").show();
+        $(this).parents("p").find(".moreFont").hide();
+    });
+
+
+//    if($(".moreFont").html()==''){
+//        alert(0);
+//
+////        $(".more-btns-down").show();
+////        $(".more-btns-up").show();
+//
+//    }else {
+//
+////        $(".more-btns-down").hide();
+////        $(".more-btns-up").hide();
+//    }
+
+
+</script>
+
+
+
+
+
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

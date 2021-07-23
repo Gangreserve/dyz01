@@ -1,0 +1,380 @@
+;window.CYWechat = window.CYWechat || {};
+(function (sp) {
+    var that = {};
+    var templates = CYWechat.htmlTemplate;
+    console.log(templates);
+    var loading = false;
+    that.init = function (option) {
+        this.guide_id = option.guide_id;
+        this.currentPage = 1;
+        this.currentType = 0;
+        this.product = option.product || "gov";
+        this.showPage();
+        this.bindEvent();
+
+    };
+
+    that.bindEvent = function () {
+        var self = this;
+        var currentType = 0;
+        $(".good-or-bad").on("click", "a", function () {
+            var type = $(this).data("p");
+            $(".good-or-bad a").removeClass("goodon");
+            if ((+ type) != currentType) {
+                currentType = type;
+                self.showMore(+ type);
+                $(this).addClass("goodon");
+                that.setShowMore(true);
+                $("#list-a").html("");
+            }
+        });
+
+
+        $(".cert-wrap").infinite().on("infinite", function () {
+            self.showMore(currentType);
+        });
+
+    };
+
+    that.setShowMore = function (show) {
+        if (show) {
+            $("#infinite-scroll").show();
+        } else {
+            $("#infinite-scroll").hide();
+        }
+
+
+    };
+
+    that.showPage = function () {
+        var tpl = templates["comment_list_good.hbs"];
+        if (this.currentType == 1) {
+            tpl = templates["comment_list_bad.hbs"];
+        }
+
+        var url = "/public/guide/comment/list";
+        if (this.product == "tour") {
+            url = "/public/guide/comment/list";
+        } else if (this.product == "guide") {
+            url = "/public/guide/comment/list";
+        } else if (this.product == "crop") {
+            url = "/crop/comment/list";
+        }
+        var currentPage = this.currentPage;
+        var type = this.currentType;
+        var data = {page: this.currentPage, ps: 5, type: this.currentType, id: this.guide_id};
+        $.ajaxPost(url, data, function (err, result) {
+            var total = result.total;
+            var list = result.list;
+            function getName(txt){
+                function str_repeat(str, num){
+                    return new Array( num + 1 ).join( str );
+                }
+                if(txt.length>2){
+                    var newTxt = txt.substr(0,2) + str_repeat("*",txt.length-2);
+
+
+                }else{
+                    var newTxt = txt.substr(0,1) + str_repeat("*",txt.length-1);
+                }
+                return newTxt;
+            }
+            list = _.map(list,function(item){
+                item.nickname = getName(item.nickname);
+                return item;
+            });
+
+            if (list && list.length) {
+                var html = Mustache.render(tpl, result);
+                $("#list-a").append(html);
+            } else if (currentPage === 1) {
+                var html = Mustache.render(tpl, result);
+                $("#list-a").append(html);
+            }
+
+            if (currentPage * 5 >= total) {
+                that.setShowMore(false);
+            }
+
+
+        });
+
+    };
+
+    that.showMore = function (type) {
+        var currentType = this.currentType;
+        if (currentType != type) {
+            this.currentPage = 0;
+            this.currentType = type;
+        }
+        this.currentPage ++;
+        this.showPage();
+
+
+    };
+
+
+    that.initAdd = function (guideInfo) {
+
+
+        function showError(msg, callback) {
+            $.alert(msg, "提示信息", callback);
+
+        }
+
+        function bindEvent() {
+
+            //评分
+            $(".stars").on("click", "li", function () {
+                var score = $(this).data("score");
+                $(this).prevAll().removeClass("on").addClass("on");
+                $(this).removeClass("on").addClass("on");
+                $(this).nextAll().removeClass("on");
+                $(this).parents(".stars").data("score", score);
+
+            });
+            $(".stars").on("focus", "li", function () {
+                $(this).blur();
+
+            });
+
+            //下一步
+            $("[data-e='next']").on("click", function () {
+                var score = $("#step_score .stars").data("score");
+                if (! score) {
+
+                    showError("请选择评分");
+                    return;
+                }
+                $("#step_score").hide();
+                if (score < 3) {
+                    $("#step_negative").show();
+                } else {
+                    $("#step_positive").show();
+                }
+
+            });
+
+            //上一步
+            $("[data-e='prev']").on("click", function () {
+
+
+                $("#step_score").show();
+                $("#step_negative").hide();
+                $("#step_positive").hide();
+
+
+            });
+
+            function setTagState(table) {
+
+
+                var hasSelected = table.find("span.active").length > 0;
+                var content = table.next().find("textarea").val();
+                content = $.trim(content);
+                hasSelected = hasSelected || content.length > 0;
+                table.prev("h3").toggleClass("icon-on", hasSelected);
+            }
+
+            //好评标签选中
+            $(".tags").on("click", "span", function () {
+
+                $(this).toggleClass("active");
+                var table = $(this).parents(".tags");
+                setTagState(table);
+
+            });
+
+            $("textarea.like-input").on("input", function () {
+                var table = $(this).parent().prev();
+                setTagState(table);
+
+            });
+
+
+            //显示剩余字数
+            $("textarea.text-boxC,.more-psj").on("input", function () {
+
+                var content = $(this).val();
+                var len = content.length;
+                var ele = $(this).next().find("span");
+                var max = 500;
+                var str = len + "/" + max + "字";
+                ele.text(str);
+
+            });
+            // $.alert("请填写完整评价！", "提示");
+
+            $("[data-e='submit']").on("click", function () {
+                var score = $("#step_score .stars").data("score");
+                if (! score) {
+                    showError("请选择评分");
+                    return;
+                }
+                var base = {"score": "2", "service": "4,1", "explain": "4,1", "image": "4,2"};
+                base.score = score;
+
+                /* {
+                 "tourguide_id": "DXY8345K",
+                 "nickname": "15812345678",
+                 "phone_num": "15812345678",
+                 "incentives": 0,
+                 "evaluate_base": {"score": "2", "service": "4,1", "explain": "4,1", "image": "4,2"},
+                 "evaluate_tag": {
+                 "tag_type": "0",
+                 "tag_lists": [6],
+                 "tag_other_desc": null,
+                 "tag_additional_remarks": null
+                 }
+                 }*/
+
+                var tag = {
+                    "tag_type": "0",  //0，点赞，1，吐槽
+                    "tag_lists": [],
+                    "tag_other_desc": null,
+                    "tag_additional_remarks": null  //更多评价
+                };
+                var tags;
+                if (score < 3) {  //差评
+                    var services = $("[data-e='neg-service'] span.active").map(function (item) {
+                        item = $(this);
+                        return item.data("v");
+                    });
+                    //
+                    if (! services || ! services.length) {
+
+                        showError("请选择服务质量");
+                        return;
+                    }
+                    var explain = $("[data-e='neg-explain'] span.active").map(function (item) {
+                        item = $(this);
+                        return item.data("v");
+                    });
+                    if (! explain || ! explain.length) {
+                        showError("请选择讲解水平");
+                        return;
+                    }
+                    var image = $("[data-e='neg-image'] span.active").map(function (item) {
+                        item = $(this);
+                        return item.data("v");
+                    });
+                    if (! image || ! image.length) {
+                        showError("请选择职业形象");
+                        return;
+                    }
+                    base.service = services.join(",")
+                    base.explain = explain.join(",")
+                    base.image = image.join(",")
+
+                    tag.tag_type = 1;
+                    tags = $("#tags-tucao span.active").map(function (i) {
+                        var item = $(this);
+                        var tagId = item.find("b").data("v");
+                        return tagId;
+                    }).get();
+
+                    tag.tag_lists = tags;
+                    tag.tag_lists = tag.tag_lists || [];
+                    var content = $("[data-e='unlike-more']").val();
+                    content = $.trim(content);
+                    if (content) {
+                        //吐槽其它
+                        tags.push(9);
+                        tag.tag_other_desc = content;
+                    }
+
+                    var negMore = $("[data-e='negative-more']").val();
+                    tag.tag_additional_remarks = negMore;
+                    if (negMore.length > 500) {
+                        showError("评价内容不能多于500字");
+                        return;
+                    }
+
+                } else {
+
+                    var stars = $(".three-star div.stars");
+                    stars = stars.map(function (item) {
+                        item = $(this);
+                        return item.data("score");
+                    });
+
+                    base.service = stars[0];
+                    base.explain = stars[1];
+                    base.image = stars[2];
+                    if (! base.service) {
+                        //
+                        showError("请选择服务质量评分");
+                        return;
+                    }
+                    if (! base.explain) {
+                        //
+                        showError("请选讲解水平评分");
+                        return;
+                    }
+                    if (! base.image) {
+                        //
+                        showError("请选择职业形象评分");
+                        return;
+                    }
+                    tags = $("table.tags.sno span.active").map(function (item) {
+                        item = $(this);
+                        return item.data("v");
+                    }).get();
+                    tag.tag_lists = tags || [];
+                    var tagOtherContent = $("[data-e='like-more']").val();
+                    tagOtherContent = $.trim(tagOtherContent);
+                    if (tagOtherContent) {
+                        //赞其它
+                        tag.tag_lists.push(6);
+                        tag.tag_other_desc = tagOtherContent;
+                    }
+                    var positiveMore = $("[data-e='positive-more']").val();
+                    tag.tag_additional_remarks = positiveMore;
+                    if (positiveMore.length > 500) {
+                        showError("评价内容不能多于500字");
+                        return;
+                    }
+                }
+
+
+                var data = {
+                    base: base,
+                    tag: tag
+                };
+                data = $.extend(guideInfo, data);
+                var url = "/tour/comment/add";
+                $.ajaxPost(url, data, function (err, data) {
+                    if (data.error_code) {
+                        showError(data.error_msg);
+                    }
+                    else {
+                        showError("评价成功", function () {
+                            var url = data.to_url;
+                            if (url) {
+                                location.href = url;
+                            }
+                        });
+
+                    }
+                })
+
+
+            });
+
+            //weui_dialog_ft
+            $(document).on("click", ".weui_dialog_ft", function () {
+                $('.weui_mask').hide();
+                $('.weui_dialog').hide();
+            });
+
+
+
+        }
+
+        bindEvent();
+    }
+
+
+    sp.CommentUI = that;
+})(window);
+

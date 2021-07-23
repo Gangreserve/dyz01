@@ -1,0 +1,142 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption,input,button{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    font-family:inherit;
+    font-weight:normal;
+}
+body {
+    font:14px/1.5 Microsoft Yahei,'\5FAE\8F6F\96C5\9ED1','Tahoma',"hiragino sans gb", Helvetica, Arial, "\5b8b\4f53", 'sans-serif';
+}
+*{
+    box-sizing:border-box;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+    outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+    text-decoration: none;
+}
+del {
+    text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
+a,a:hover,a:active,a:visited{
+    text-decoration:none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+}
+.hbox, .vbox {
+    display: -webkit-box;
+    -webkit-box-align: stretch;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: start;
+}
+
+.hbox {
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -o-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.vbox {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.cbox {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+
+    display: -o-box;
+    -o-box-align: center;
+    -o-box-pack: center;
+
+    display: -webkit-flex;
+    display: flex;
+    align-items:center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.vcbox {
+    display: -webkit-box;
+    -webkit-box-align: stretch;
+
+    display: -o-box;
+    -o-box-align: stretch;
+
+    display: -webkit-flex;
+    display: flex;
+    align-items: stretch;
+
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+input{
+    padding:5px;
+}
+.te {
+    /*white-space: nowrap;
+    text-overflow: ellipsis;*/
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+.text-center{
+    text-align:center;
+}
